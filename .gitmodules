@@ -1,0 +1,21 @@
+[submodule "PhotonEngine/vendor/entt"]
+	path = PhotonEngine/vendor/entt
+	url = https://github.com/skypjack/entt.git
+[submodule "PhotonEngine/vendor/glfw"]
+	path = PhotonEngine/vendor/glfw
+	url = https://github.com/glfw/glfw.git
+[submodule "PhotonEngine/vendor/glm"]
+	path = PhotonEngine/vendor/glm
+	url = https://github.com/g-truc/glm.git
+[submodule "PhotonEngine/vendor/imgui"]
+	path = PhotonEngine/vendor/imgui
+	url = https://github.com/ocornut/imgui.git
+[submodule "PhotonEngine/vendor/ImGuizmo"]
+	path = PhotonEngine/vendor/ImGuizmo
+	url = https://github.com/CedricGuillemet/ImGuizmo.git
+[submodule "PhotonEngine/vendor/spdlog"]
+	path = PhotonEngine/vendor/spdlog
+	url = https://github.com/gabime/spdlog.git
+[submodule "PhotonEngine/vendor/yaml-cpp"]
+	path = PhotonEngine/vendor/yaml-cpp
+	url = https://github.com/jbeder/yaml-cpp.git

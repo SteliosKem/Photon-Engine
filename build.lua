@@ -2,7 +2,7 @@
 workspace "New Project"
    architecture "x64"
    configurations { "Debug", "Release", "Dist" }
-   startproject "Application"
+   startproject "PhotonEditor"
 
    -- Workspace-wide build options for MSVC
    filter "system:windows"
@@ -10,8 +10,8 @@ workspace "New Project"
 
 OutputDir = "%{cfg.system}-%{cfg.architecture}/%{cfg.buildcfg}"
 
-group "Library"
-	include "Library/build-lib.lua"
+group "PhotonEngine"
+	include "PhotonEngine/build-lib.lua"
 group ""
 
-include "Application/build-app.lua"
+include "PhotonEditor/build-app.lua"
