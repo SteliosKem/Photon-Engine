@@ -1,0 +1,26 @@
+#include "Renderer.h"
+#include "Utility.h"
+
+namespace Photon {
+	void Renderer::render(std::vector<uint8_t>& data) const {
+		for (int i = 0; i < m_camera.image_height(); i++) {
+			// For every row from top to bottom, output all pixels from left to right
+			for (int k = 0; k < m_camera.image_width(); k++) {
+				glm::vec3 pixel_center = m_camera.origin_pixel() + (float)i * m_camera.dh() + (float)k * m_camera.dw();
+				glm::vec3 ray_direction = pixel_center - m_camera.position();
+
+				Ray ray(m_camera.position(), ray_direction);
+				Color color = hit_color(ray);
+				data.push_back(write_color_value(color.r));
+				data.push_back(write_color_value(color.g));
+				data.push_back(write_color_value(color.b));
+			}
+		}
+	}
+
+	Color Renderer::hit_color(const Ray& ray) const {
+		glm::vec3 unit_direction = glm::normalize(ray.direction());
+		float a = 0.5f * (unit_direction.y + 1.0f);
+		return (1 - a) * Color { 0.0f } + a * Color{ 0.8f, 0.8f, 0.2f };
+	}
+}

@@ -9,5 +9,5 @@ namespace Photon {
 	using LowRes_PixelDataArray = std::array<std::array<Color3, 426>, 240>;
 
 	//void render(uint16_t width, uint16_t height, const Color3** data);
-	void format_ppm(LowRes_PixelDataArray& data, const std::filesystem::path& out_path);
+	void format_ppm(const std::filesystem::path& out_path);
 }

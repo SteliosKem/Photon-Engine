@@ -8,7 +8,7 @@ namespace Photon {
 		Camera() {}
 		~Camera() {}
 
-		Camera(const glm::vec3& position, float aspect_ratio, int image_width, float focal_length) : 
+		Camera(const glm::vec3& position, float aspect_ratio, uint32_t image_width, float focal_length) : 
 			m_camera_pos{ position }, m_aspect_ratio{ aspect_ratio }, m_image_width{ image_width }, m_focal_length{ focal_length } {
 			recalculate(); 
 		}
