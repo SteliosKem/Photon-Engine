@@ -2,14 +2,22 @@
 #include <string>
 #include <format>
 #include <fstream>
+#include "ProgressBar.h"
 
 namespace Photon {
 	void format_ppm(LowRes_PixelDataArray& data, const std::filesystem::path& out_path) {
 		std::string text_out = "";
 
+		size_t width = data[0].size();
+		size_t height = data.size();
+
 		text_out += "P3\n";
 		// Specify {width} {height} and color format {255}
-		text_out += std::format("{} {} 255\n", data[0].size(), data.size());
+		text_out += std::format("{} {} 255\n", width, height);
+
+		std::cout << "Rendering...\n";
+
+		uint64_t progress = 0;
 
 		for (auto& row : data) {
 			// For every row from top to bottom, output all pixels from left to right
@@ -20,7 +28,23 @@ namespace Photon {
 				uint8_t b = uint8_t(pixel.b * 255.999);
 				text_out += std::format("{} {} {}\n", r, g, b);
 			}
+			// Update progress_bar visual for each row
+			int barWidth = 70;
+
+			std::cout << "[";
+			int pos = barWidth * progress / float(height);
+			for (int i = 0; i < barWidth; ++i) {
+				if (i < pos) std::cout << "=";
+				else if (i == pos) std::cout << ">";
+				else std::cout << " ";
+			}
+			std::cout << "] " << int(progress / float(height) * 100.0) << " %\r";
+			std::cout.flush();
+
+			progress++;
 		}
+
+		std::cout << std::endl;
 
 		// Write to file
 		std::ofstream out_file(out_path);
