@@ -1,3 +1,6 @@
+IncludeDir = {}
+IncludeDir["glm"] = "vendor/glm"
+
 project "PhotonEngine"
    kind "StaticLib"
    language "C++"
@@ -7,6 +10,10 @@ project "PhotonEngine"
 
    files { "src/**.h", "src/**.cpp" }
 
+   includedirs {
+        "%{IncludeDir.glm}",
+    }
+   
    includedirs
    {
       "src"

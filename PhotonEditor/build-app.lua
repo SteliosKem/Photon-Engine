@@ -1,3 +1,6 @@
+IncludeDir = {}
+IncludeDir["glm"] = "../PhotonEngine/vendor/glm"
+
 project "PhotonEditor"
    kind "ConsoleApp"
    language "C++"
@@ -10,14 +13,16 @@ project "PhotonEditor"
    includedirs
    {
       "src",
-
+      "%{IncludeDir.glm}",
+      
 	  -- Include Core
-	  "../Library/src"
+	  "../PhotonEngine/src",
+      
    }
 
    links
    {
-      "Library"
+      "PhotonEngine"
    }
 
    targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")
