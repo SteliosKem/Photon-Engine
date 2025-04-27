@@ -19,8 +19,12 @@ namespace Photon {
 	}
 
 	Color Renderer::hit_color(const Ray& ray) const {
-		if (ray.hit(Sphere(glm::vec3{ 0.0f, 0.0f, -1.0f }, 0.5f)))
-			return Color{ 0.5f, 0.6f, 1.0f };
+		float t = ray.hit(Sphere(glm::vec3{ 0.0f, 0.0f, -1.0f }, 0.9f));
+		if (t > 0) {
+			glm::vec3 normal = ray.get_point_at(t) - glm::vec3{ 0.0f, 0.0f, -1.0f };
+			normal /= 0.9f;
+			return 0.5f * Color{ normal.x + 1, normal.y + 1, normal.z + 1 };
+		}
 
 		glm::vec3 unit_direction = glm::normalize(ray.direction());
 		//glm::vec3 unit_direction = ray.direction() / (float)ray.direction().length();

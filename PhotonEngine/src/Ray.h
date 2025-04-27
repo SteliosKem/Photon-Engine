@@ -17,7 +17,7 @@ namespace Photon {
 			return m_origin + (x * m_direction);
 		}
 
-		bool hit(const Sphere& sphere) const;
+		float hit(const Sphere& sphere) const;
 	private:
 		glm::vec3 m_origin{ 0.0f, 0.0f, 0.0f };
 		glm::vec3 m_direction{ 1.0f, 1.0f, 1.0f };

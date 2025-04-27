@@ -1,7 +1,7 @@
 #include "Ray.h"
 
 namespace Photon {
-	bool Ray::hit(const Sphere& sphere) const {
+	float Ray::hit(const Sphere& sphere) const {
 		// a, b, c are the terms of the quadratic equation of t that for some t return 0 if the ray intersects the sphere at least once
 		float a = glm::dot(m_direction, m_direction);
 
@@ -11,6 +11,7 @@ namespace Photon {
 		float c = glm::dot(origin_to_center, origin_to_center) - sphere.radius() * sphere.radius();
 
 		float discriminant = b * b - 4 * a * c;
-		return discriminant >= 0;
+		if (discriminant < 0) return -1;
+		return -b - sqrtf(discriminant) / 2.0f * a;
 	}
 }
