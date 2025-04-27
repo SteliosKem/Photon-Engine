@@ -10,7 +10,7 @@ namespace Photon {
 	void format_ppm(const std::filesystem::path& out_path) {
 		std::string text_out = "";
 
-		Renderer renderer{ Camera{ glm::vec3{0.0f}, 16.0f/9.0f, 400, 1.0f} };
+		Renderer renderer{ Camera{ glm::vec3{0.0f}, 16.0f/9.0f, 400, 0.4f} };
 
 		size_t width = renderer.camera().image_width();
 		size_t height = renderer.camera().image_height();

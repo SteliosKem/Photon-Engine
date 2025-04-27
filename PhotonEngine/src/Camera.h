@@ -53,8 +53,8 @@ namespace Photon {
 			m_dw = m_width_vector / (float)m_image_width;
 			m_dh = m_height_vector / (float)m_image_height;
 
-			m_viewport_upper_left = m_camera_pos - glm::vec3{ 0.0f, 0.0f, m_focal_length } - (m_viewport_width / 2.0f) - (m_viewport_height / 2.0f);
-			m_origin_pixel = m_viewport_upper_left + (m_dw / 2.0f) + (m_dh / 2.0f);
+			m_viewport_upper_left = m_camera_pos - glm::vec3{ 0.0f, 0.0f, m_focal_length } - 0.5f * (m_width_vector + m_height_vector);
+			m_origin_pixel = m_viewport_upper_left + 0.5f * (m_dw + m_dh);
 		}
 	private:
 		// Camera
