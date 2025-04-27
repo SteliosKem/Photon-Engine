@@ -1,5 +1,6 @@
 #include "Renderer.h"
 #include "Utility.h"
+#include "Objects.h"
 
 namespace Photon {
 	void Renderer::render(std::vector<uint8_t>& data) const {
@@ -19,7 +20,8 @@ namespace Photon {
 	}
 
 	Color Renderer::hit_color(const Ray& ray) const {
-		float t = ray.hit(Sphere(glm::vec3{ 0.0f, 0.0f, -1.0f }, 0.9f));
+		HitInfo h = Sphere(glm::vec3{ 0.0f, 0.0f, -1.0f }, 0.9f).hit(ray, 0.0f, 100.0f);
+		float t = h.t;
 		if (t > 0) {
 			glm::vec3 normal = ray.get_point_at(t) - glm::vec3{ 0.0f, 0.0f, -1.0f };
 			normal /= 0.9f;
