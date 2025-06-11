@@ -20,7 +20,7 @@ namespace Photon {
 	}
 
 	Color Renderer::hit_color(const Ray& ray) const {
-		HitInfo h = Sphere(glm::vec3{ 0.0f, 0.0f, -1.0f }, 0.9f).hit(ray, 0.0f, 100.0f);
+		HitInfo h = Sphere(glm::vec3{ 0.0f, 0.0f, -1.0f }, 0.9f).hit(ray, Interval::universe);
 		float t = h.t;
 		if (t > 0) {
 			glm::vec3 normal = ray.get_point_at(t) - glm::vec3{ 0.0f, 0.0f, -1.0f };

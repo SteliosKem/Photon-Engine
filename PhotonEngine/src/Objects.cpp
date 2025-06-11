@@ -1,7 +1,7 @@
 #include "Objects.h"
 
 namespace Photon {
-	HitInfo Sphere::hit(const Ray& ray, float ray_t_min, float ray_t_max) const {
+	HitInfo Sphere::hit(const Ray& ray, const Interval& interval) const {
 		// a, b, c are the terms of the quadratic equation of t that for some t return 0 if the ray intersects the sphere at least once
 		// h is b/(-2)
 		float a = glm::dot(ray.direction(), ray.direction());
@@ -16,14 +16,15 @@ namespace Photon {
 		
 		float discriminant_sqrt = sqrtf(discriminant);
 		float root = (h - discriminant_sqrt) / a;
-		if (root <= ray_t_min || root >= ray_t_max) {
+		if (!interval.surrounds(root)) {
 			root = (h + discriminant) / a;
-			if (root <= ray_t_min || root >= ray_t_max) return { false };
+			if (!interval.surrounds(root)) return { false };
 		}
-
+		
 		glm::vec3 point_hit = ray.get_point_at(root);
 
 		return {
+			ray,
 			true,
 			point_hit,
 			(point_hit - m_position) / m_radius,
